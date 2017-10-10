@@ -5,14 +5,20 @@ import './Nav.css';
 
 import ShoppingCart from 'react-icons/lib/fa/shopping-cart';
 
-function Nav( { items } ) {
+import { Link } from 'react-router-dom';
+
+function Nav({ items }) {
   return (
     <div id="Nav__container">
       <div id="Nav__linksContainer">
-        <span className="Nav__label">Store</span>
+        <Link to='/' className='navLink'>
+          <span className="Nav__label">Store</span>
+        </Link>
 
         <div id="Nav__checkoutContainer">
-          <div id="Nav__itemsInCart"> { items } </div>
+          <Link to='/checkout' className='navLink'>
+            <div id="Nav__itemsInCart"> {items} </div>
+          </Link>
           <ShoppingCart id="Nav__shoppingCart" />
         </div>
       </div>
@@ -20,10 +26,10 @@ function Nav( { items } ) {
   )
 }
 
-function mapStateToProps( state ) {
+function mapStateToProps(state) {
   return {
     items: state.cart.length
   };
 }
 
-export default connect( mapStateToProps )( Nav );
+export default connect(mapStateToProps)(Nav);
